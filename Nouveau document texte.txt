@@ -1,0 +1,33 @@
+animation: changeCouleur 8s infinite;
+  }
+  @keyframes changeCouleur {
+     100% {
+        background: linear-gradient(135deg,gray 50%,darkgray 25%);
+background-size: 30% 100%;
+     
+    }
+
+
+
+----------------
+
+
+animation: changeCouleur 8s infinite;
+  }
+  @keyframes changeCouleur {
+    0% {
+        background-color: #f1dd6d;
+      border-radius: 10px;
+         }
+    33% {
+        background-color: #f1cc6d;
+      border-radius: 25px;
+          }
+    66% {
+        background-color: #e7f16d;
+      border-radius: 25px;
+    }
+    100% {
+        background-color: #c7f16d;
+      border-radius: 10px;
+    }

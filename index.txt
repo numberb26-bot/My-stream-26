@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+body {
+background: var(--bg);
+--bg: linear-gradient(-135deg,gray 50%,darkgray 25%);
+background-size: 30% 100%;
+}
+body:active {
+   background:linear-gradient(135deg,gray 50%,darkgray 25%);
+background-size: 30% 100%;
+} 
+
+.anim::before {
+	-webkit-animation: test 6s infinite;
+	animation: test 6s infinite;
+}
+@-webkit-keyframes .anim {
+	100% {
+		left: 50%;
+	}
+}
+@keyframes .anim {
+	100% {
+		left: 50%;
+	}
+}
+.anim
+{
+border-radius:8px;     
+animation: Test 6s;
+}
+@keyframes Test {
+    0%{opacity: 1;}
+    50%{opacity: 0;}
+    100%{opacity: 1;}
+    
+}
+
+.legende {
+    margin-top: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius:8px;
+    padding:10px;
+    background: rgba(0, 0, 0, 0.5);
+        
+}
+
+
+/* --- MODAL --- */
+#videoModal {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    --bg:green;
+    transition: 0.1s background;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+#videoModal:active {
+--bg:linear-gradient(45deg, rgba(0, 128, 0, 1), rgba(145, 146, 122, 1));
+}
+
+#videoModal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, visibility 0s;
+}
+
+#videoContainer {
+    position: relative;
+    top: 10px;
+    width: 400px;
+    height: 350px;
+    padding: 5px;
+    background: var(--bg);
+    --bg:rgba(0,0,0,0.1);
+    transition: 0.1s background;
+    border-radius: 15px;
+    border: 2px black solid;
+    overflow: hidden;
+    /* Zoom initial : petit */
+    transform: scale(0);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#videoContainer:active {
+--bg:linear-gradient(45deg, rgba(145, 146, 122, 0.62), rgba(0, 128, 0, 0.68));
+                 background-size: 100% 100%;
+}
+
+/* Animation ZOOM : passe à taille normale */
+#videoModal.active #videoContainer {
+    transform: scale(1);
+}
+
+/* ✅ Lien de légende avec tooltip au-dessus de l'iframe */
+#filmTitre {
+    position: relative;
+    top: 30px;
+    display:block;
+    margin:auto;
+    text-align:center;
+    padding: 5px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    z-index: 5;
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+
+#filmTitre:hover {
+    color: transparent;
+    text-decoration: underline;
+       
+}
+
+/* ✅ Tooltip TMDB */
+#filmTitre::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top:-35px;
+    left:0;
+    padding:5px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+    pointer-events: none;
+    margin-top: 5px;
+}
+
+#filmTitre:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0s;
+}
+
+
+
+iframe {
+    position: relative;
+    top: 80px;
+    display:block;
+    margin:auto;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.closeBtn {
+    position: absolute;
+    right:5px;
+    color: white;
+    font-size: 32px;
+    background: none;
+    border:none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+.closeBtn:hover {
+    transform: scale(1.1);
+    color: red;
+    font-weight:bold;
+        
+}
+#container {
+position: relative;
+top: 40px;
+display: block;
+margin: auto;
+background: ;
+width: 190px;
+height: 260px;
+border: none;
+border-radius: 8px;
+cursor:none;
+/* ✅ Légende sous l'affiche */
+text-align: center;
+  /* Définition de l'animation : nom, durée, courbe de vitesse, répétition */
+  animation: vibrer 0.5s linear ;
+  
+  /* Optionnel : pour centrer l'animation autour de l'image */
+  transform-origin: center; 
+}
+
+@keyframes vibrer {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+</style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<div id="videoModal" onclick="closeModal(event)">
+    <div id="videoContainer">
+        <button class="closeBtn" onclick="closeModalDirect()">×</button>
+        <!-- ✅ Lien de légende avec tooltip au-dessus de l'iframe -->
+        <a id="filmTitre" href="#" target="_blank" data-tooltip="TMDB"></a>
+        <iframe id="videoFrame" src="" allowfullscreen></iframe>
+    </div>
+</div>
+<script src="modal.js"></script>
+
+
+</body>
+</html>

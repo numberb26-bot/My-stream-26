@@ -19,12 +19,22 @@ height:100%;
 top:0;
 left:0;
 background: var(--bg);
---bg: linear-gradient(-135deg,gray 50%,darkgray 25%);
-background-size: 30% 65%;
+--bg: linear-gradient(180deg,darkgray 95%,gray 5%);
+background-size: 100% 100%;
+background: linear-gradient(180deg,darkgray 95%,gray 5%);
+background-size: 100% 100%;
+animation: changeCouleur 1.5s infinite alternate;
+  }
+@keyframes changeCouleur {
+   0% {
+        background: linear-gradient(-0deg,rgba(145, 146, 122, 0.32) 95%,rgba(0, 128, 0, 0.38) 5%);
+background-size: 100% 100%;  
+    }
+
 }
 #body:active {
-   background:linear-gradient(135deg,gray 50%,darkgray 25%);
-background-size: 30% 65%;
+     background:linear-gradient(180deg,rgba(145, 146, 122, 5.22) 50%,rgba(0, 128, 0, 5.28) 50%);
+background-size: 5% 5%;
 } 
 
 .anim::before {
